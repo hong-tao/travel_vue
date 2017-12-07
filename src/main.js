@@ -1,8 +1,11 @@
 import Vue from 'vue'
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
 import App from './App.vue'
 import Vuex from 'vuex'
+import './assets/css/base.css'
 Vue.use(Vuex)
-
+Vue.use(ElementUI)
 
 
 //使用路由

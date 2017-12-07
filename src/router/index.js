@@ -12,14 +12,11 @@ import detailsView from '../view/details/details.vue';
 import goodslistView from '../view/goodslist/goodslist.vue';
 import homeView from '../view/home/home.vue';
 import hotelView from '../view/hotel/hotel.vue';
+import informationView from '../view/information/personal_information.vue'
 
 
 const router = new VueRouter({
 	routes: [
-		{
-			path: '/',
-      		redirect: '/login'
-		},
 		{
 			path:'/login',
 			component:loginView,
@@ -29,6 +26,11 @@ const router = new VueRouter({
 			path:'/details',
 			component:detailsView,
 			name:'details'
+		},
+		{
+			path:'/information',
+			name:'information',
+			component:informationView
 		},
 		{
 			path:'/goodslist',
