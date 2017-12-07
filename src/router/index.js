@@ -8,6 +8,11 @@ Vue.use(VueRouter);
 import loginView from '../view/login/login.vue';
 import registerView from '../view/register/register.vue';
 import productView from '../view/product/product.vue';
+import detailsView from '../view/details/details.vue';
+import goodslistView from '../view/goodslist/goodslist.vue';
+import homeView from '../view/home/home.vue';
+import hotelView from '../view/hotel/hotel.vue';
+
 
 const router = new VueRouter({
 	routes: [
@@ -21,6 +26,21 @@ const router = new VueRouter({
 			name:'login'
 		},
 		{
+			path:'/details',
+			component:detailsView,
+			name:'details'
+		},
+		{
+			path:'/goodslist',
+			component:goodslistView,
+			name:'goodslist'
+		},
+		{
+			path:'/hotel',
+			component:hotelView,
+			name:'hotel'
+		},
+		{
 			path:'/register',
 			component:registerView,
 			name:'register'
@@ -30,10 +50,13 @@ const router = new VueRouter({
 			component:productView,
 			name:'product'
 		},
-//		{
-//			path:'*',
-//			redirect: '/login'
-//		}
+		{
+			path:'/'
+		},
+		{
+			path:'*',
+			redirect: '/login'
+		}
 	]
 });
 //本身就是实例就无需暴露对象,或者可以另外一种写法
