@@ -16,6 +16,9 @@ import informationView from '../view/information/personal_information.vue'
 import securityCode from '../components/securityCode/securityCode.vue'
 import personalSettingView from '../view/personalSettings/personalSetting.vue'
 import myorderView from '../view/myOrder/myorder.vue'
+import orderDetailView from '../view/orderDetails/orderDetail.vue'
+import contactView from '../view/Contact/contact.vue'
+import appendView from '../view/append/append.vue'
 
 
 const router = new VueRouter({
@@ -24,6 +27,21 @@ const router = new VueRouter({
 			path:'/login',
 			component:loginView,
 			name:'login'
+		},
+		{
+			path:'/append',
+			component:appendView,
+			name:'append'
+		},
+		{
+			path:'/contact',
+			component:contactView,
+			name:'contact'
+		},
+		{
+			path:'/orderdetail/:productid',
+			component:orderDetailView,
+			name:'orderdetail'
 		},
 		{
 			path:'/order',

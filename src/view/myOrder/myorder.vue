@@ -38,11 +38,11 @@
         </div>
         <div class="main">
             <ul v-if='dataset.length > 0'>
-                <li v-for='(obj,index) in dataset'>
+                <li v-for='(obj,index) in dataset' @click='payment'>
                     <div class='m_head'>
                         <span class='ordernums'>{{obj.ordernumber}}</span>
-                        <span v-if='obj.status===0'>进行中</span>
-                        <span v-else-if='obj.status===1'>待出行</span>
+                        <span>进行中</span>
+                        <!-- <span v-else-if='obj.status===1'>待出行</span> -->
                         <i class='el-icon-delete' @click='removes'></i>
                     </div>
                     <img :src='obj.images'/>
@@ -109,6 +109,9 @@
                 }).then(res=>{
                     jQuery(a).remove()
                 })
+            },
+            payment:function(){
+                console.log('payment')
             }
         },
         mounted:function(event){
