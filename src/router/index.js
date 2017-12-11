@@ -13,6 +13,9 @@ import goodslistView from '../view/goodslist/goodslist.vue';
 import homeView from '../view/home/home.vue';
 import hotelView from '../view/hotel/hotel.vue';
 import informationView from '../view/information/personal_information.vue'
+import securityCode from '../components/securityCode/securityCode.vue'
+import personalSettingView from '../view/personalSettings/personalSetting.vue'
+import myorderView from '../view/myOrder/myorder.vue'
 
 
 const router = new VueRouter({
@@ -23,9 +26,24 @@ const router = new VueRouter({
 			name:'login'
 		},
 		{
+			path:'/order',
+			component:myorderView,
+			name:'order'
+		},
+		{
+			path:'/setting',
+			component:personalSettingView,
+			name:'setting'
+		},
+		{
 			path:'/details',
 			component:detailsView,
 			name:'details'
+		},
+		{
+			path:'/securityCode',
+			component:securityCode,
+			name:'securityCode'
 		},
 		{
 			path:'/information',

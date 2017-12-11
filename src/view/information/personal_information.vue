@@ -3,12 +3,12 @@
         <div class="top">
             <div class="top1">
                 <i class="el-icon-arrow-left"></i> 
-                <i class="el-icon-setting"></i> 
+                <i class="el-icon-setting" @click='setclick'></i> 
                 <i class="el-icon-bell"></i> 
             </div>
             <div class="top2">
                 <img src='../../assets/img/adf.txt.jpg' />
-                <span @click='myclick'>登录/注册</span>
+                <span @click='myclick' v-if='show'>{{message}}</span>
             </div>
         </div>
         <div class="main">
@@ -18,10 +18,28 @@
             </div>
             <div class="main_c">
                 <ul>
-                    <li><i class='el-icon-tickets'></i><span>待付款</span></li>
-                    <li><i class='el-icon-goods'></i><span>待出行</span></li>
-                    <li><i class='el-icon-edit-outline'></i><span>待评价</span></li>
-                    <li><i class='el-icon-document'></i><span>我的订单</span></li>
+                    <li>
+                        <el-badge :value="num1" class="item">
+                          <el-button size="medium" class='one'><i class='el-icon-tickets' @click='obligation'></i></el-button>
+                        </el-badge>
+                        <span>待付款</span>
+                    </li>
+                    <li>
+                        <el-badge :value="num2" class="item">
+                          <el-button size="medium" class='one'><i class='el-icon-goods'></i></el-button>
+                        </el-badge>
+                        <span>待出行</span>
+                    </li>
+                    <li>
+                        <el-badge :value="num3" class="item">
+                          <el-button size="medium" class='one'><i class='el-icon-edit-outline'></i></el-button>
+                        </el-badge>
+                        <span>待评价</span></li>
+                    <li>
+                        <el-badge :value="num4" class="item">
+                          <el-button size="medium" class='one'><i class='el-icon-document'></i></el-button>
+                        </el-badge>
+                        <span>我的订单</span></li>
                 </ul>
             </div>
             <div class="main_b">
@@ -40,16 +58,54 @@
 
 <script type="text/javascript">
     export default {
+        data:function(){
+            return {
+                show:'true',
+                message:'登录/注册',
+                token:window.localStorage.getItem('token'),
+                num1:'12',
+                num2:'',
+                num3:'',
+                num4:""
+            }
+        },
         methods:{
             myclick:function(){
-                this.$router.push({name:'login'})
+                if(this.message==='登录/注册'){
+                    this.$router.push({name:'login'})
+                }
+            },
+            setclick:function(){
+                // let token = window.localStorage.getItem('token');
+                if(this.token){
+                    this.$router.push({name:'setting'})
+                }else{
+                    this.$router.push({name:'login'})
+                }
+            },
+            obligation:function(){
+                if(this.token){
+                    this.$router.push({name:'order'})
+                }else{
+                    this.$router.push({name:'login'})
+                }
+
+            }
+        },
+        mounted:function(){
+            let token = window.localStorage.getItem('token');
+            if(token){
+                let name = token.split('&')[1];
+                this.message = name; 
+                this.show = 'false';
             }
         }
     }
 </script>
 
 <style type="text/css">
-    
+    .item{margin-top:-0.4rem;}
+    .one{border:0;padding:0 0;}
     .bigBox{
         width:10.0rem;
         height:17.787rem;
