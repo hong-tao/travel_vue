@@ -7,7 +7,7 @@ import './assets/css/base.css'
 Vue.use(Vuex)
 Vue.use(ElementUI)
 
-
+// import 'font-awesome/css/font-awesome.min.css'
 //使用路由
 import {router} from './router/index'; 
 //使用vuex通信

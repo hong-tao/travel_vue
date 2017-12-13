@@ -19,14 +19,31 @@ import myorderView from '../view/myOrder/myorder.vue'
 import orderDetailView from '../view/orderDetails/orderDetail.vue'
 import contactView from '../view/Contact/contact.vue'
 import appendView from '../view/append/append.vue'
+import paymentView from '../view/payment/payment.vue'
+import hotelcheckView from '../view/hotelcheck/hotelcheck.vue'
 
 
 const router = new VueRouter({
 	routes: [
 		{
+			path:'/home',
+			component:homeView,
+			name:'home'
+		},
+		{
+			path:'/hotelcheck/:star/:adr',
+			component:hotelcheckView,
+			name:'hotelcheck'
+		},
+		{
 			path:'/login',
 			component:loginView,
 			name:'login'
+		},
+		{
+			path:'/payment/:productid',
+			component:paymentView,
+			name:'payment'
 		},
 		{
 			path:'/append',
@@ -89,7 +106,8 @@ const router = new VueRouter({
 			name:'product'
 		},
 		{
-			path:'/'
+			path:'/',
+			redirect:'/home'
 		},
 		{
 			path:'*',

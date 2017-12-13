@@ -2,9 +2,10 @@
     <div class='bigBox'>
         <div class="top">
             <div class="top1">
-                <i class="el-icon-arrow-left"></i> 
+                <backtrack></backtrack>
+                <!-- <i class="el-icon-arrow-left"></i>  -->
                 <i class="el-icon-setting" @click='setclick'></i> 
-                <i class="el-icon-bell"></i> 
+                <i class="el-icon-location-outline" @click='homeclick'></i> 
             </div>
             <div class="top2">
                 <img src='../../assets/img/adf.txt.jpg' />
@@ -57,13 +58,16 @@
 </template>
 
 <script type="text/javascript">
+    import backtrack from '../../components/backtrack/backtrack.vue'
+    import qs from 'qs'
+    import axios from 'axios'
     export default {
         data:function(){
             return {
                 show:'true',
                 message:'登录/注册',
                 token:window.localStorage.getItem('token'),
-                num1:'12',
+                num1:'',
                 num2:'',
                 num3:'',
                 num4:""
@@ -90,6 +94,9 @@
                     this.$router.push({name:'login'})
                 }
 
+            },
+            homeclick:function(){
+                this.$router.push({name:'home'})
             }
         },
         mounted:function(){
@@ -99,6 +106,10 @@
                 this.message = name; 
                 this.show = 'false';
             }
+            
+        },
+        components:{
+            backtrack,
         }
     }
 </script>
@@ -124,7 +135,8 @@
         font-size:0.587rem;
         color:#fff;
     }
-    .top1 i:nth-of-type(2),.top1 i:nth-of-type(3){
+    .top1>div{display:inline-block;}
+    .top1 i:nth-of-type(1),.top1 i:nth-of-type(2){
         float: right;
         margin-left:0.267rem;
 

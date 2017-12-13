@@ -53,9 +53,11 @@
                     }
 				}).then(res=>{
 					// var params = Boolean(res.data.trim())
-					var token = res.data.token+'&'+res.data.username
-					window.localStorage.setItem('token',token)
-					this.$router.push({name:'information'})					
+					if(res.data){
+						var token = res.data.token+'&'+res.data.username
+						window.localStorage.setItem('token',token)
+						this.$router.push({name:'information'})					
+					}
 				})
 			}
 		}
