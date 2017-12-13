@@ -1,15 +1,15 @@
 <template>
   <section>
-  	<common :controlType="controlType"></common>
+  	<Common :controlType="controlType"></Common>
   </section>
 </template>
 
 <script>
-  import common from './listCommon/common.vue'
+  import Common from './listCommon/Common.vue'
 
   export default {
   	components:{
-      common
+      Common
     },
     data(){
       return {

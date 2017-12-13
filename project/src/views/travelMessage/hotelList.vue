@@ -30,7 +30,7 @@
 
     <el-dialog title="信息编辑" :visible.sync="dialogVisible" :before-close="handleClose" center>
       <el-form :model="editForm" label-width="80px" :rules="editFormRules" ref="editForm">
-        <el-form-item :label="key"  prop="name" align="center" v-for="(value, key) in keyData" v-if="fitlerItem.indexOf(key) < 0">
+        <el-form-item :label="dataTypeChange[key]"  prop="name" align="center" v-for="(value, key) in keyData" v-if="fitlerItem.indexOf(key) < 0">
           <el-input v-model="editForm[key]" auto-complete="off"></el-input>
         </el-form-item>
       </el-form>
@@ -49,7 +49,7 @@
       style="width: 100%;margin-top:15px;"
       @selection-change="selsChange">
       <el-table-column type="selection" align="center"></el-table-column>
-      <el-table-column :label="key" prop="name" align="center" v-for="(value, key) in keyData" v-if="fitlerItem.indexOf(key) < 0">
+      <el-table-column :label="dataTypeChange[key]" prop="name" align="center" v-for="(value, key) in keyData" v-if="fitlerItem.indexOf(key) < 0">
         <template slot-scope="scope">{{scope.row[key]}}</template>
       </el-table-column>
       <el-table-column prop="name" label="操作" align="center">
@@ -74,6 +74,13 @@
         listLoading: false,
         travelDetail: [],
         keyData:{},
+        dataTypeChange:{
+          name: '酒店名',
+          pirce: '入住价格',
+          address: '具体地址',
+          add: '所在城市',
+          star: '酒店星级'
+        },
         input: '',//搜索框输入
         sels: [],//列表选中项
         dialogVisible: false,//编辑框状态
@@ -162,7 +169,7 @@
       addItem(index, row){
         this.dataType = 'add';
         this.dialogVisible = true;
-        this.editForm = Object.assign({}, row);
+        // this.editForm = Object.assign({}, row);
       },
       // 编辑
       editItem(index, row){
@@ -177,10 +184,10 @@
           this.$confirm('确认提交吗？', '提示', {}).then(() => {
             let para = Object.assign({}, this.editForm);
             let params = new URLSearchParams();
+            delete para.id;
             params.append('id', this.editForm.id);
             params.append('type', 'edit');
             params.append('datas', JSON.stringify(para));
-
             editHotel(params).then((res) => {
               this.loading = false;
               if(res == false){
@@ -200,14 +207,13 @@
         }else if(this.dataType == 'add'){
           this.$confirm('确认提交吗？', '提示', {}).then(() => {
             let para = Object.assign({}, this.editForm);
-            delete para.id;
             let params = new URLSearchParams();
             params.append('type', 'add');
             params.append('datas', JSON.stringify(para));
 
             addHotel(params).then((res) => {
               this.loading = false;
-             if(res == false){
+              if(res == false){
                 this.$message({
                   message: '提交失败',
                   type: 'dager'

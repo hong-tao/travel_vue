@@ -35,7 +35,7 @@
 
     <el-dialog title="信息编辑" :visible.sync="dialogVisible" :before-close="handleClose" center>
       <el-form :model="editForm" label-width="80px" :rules="editFormRules" ref="editForm">
-        <el-form-item :label="key"  prop="name" align="center" v-for="(value, key) in keyData" v-if="fitlerItem.indexOf(key) < 0">
+        <el-form-item :label="dataTypeChange[key]"  prop="name" align="center" v-for="(value, key) in keyData" v-if="fitlerItem.indexOf(key) < 0">
           <el-input v-model="editForm[key]" auto-complete="off"></el-input>
         </el-form-item>
       </el-form>
@@ -54,7 +54,7 @@
   	  style="width: 100%;margin-top:15px;"
   	  @selection-change="selsChange">
       <el-table-column type="selection" align="center"></el-table-column>
-      <el-table-column :label="key" prop="name" align="center" v-for="(value, key) in keyData" v-if="fitlerItem.indexOf(key) < 0">
+      <el-table-column :label="dataTypeChange[key]" prop="name" align="center" v-for="(value, key) in keyData" v-if="fitlerItem.indexOf(key) < 0">
         <template slot-scope="scope">{{scope.row[key]}}</template>
       </el-table-column>
       <el-table-column prop="name" label="操作" align="center">
@@ -69,14 +69,22 @@
 </template>
 
 <script>
-  import { searchGoods, addGoods, editGoods, removeGoods, delGoods, shelveGoods, shelveSelectGoods} from '../../../api/api'
+  import { searchGoods, addGoods, editGoods, removeGoods, delGoods, shelveGoods, shelveSelectGoods } from '../../../api/api'
 
   export default {
     data() {
       return {
-      	fitlerItem: [  'productID', 'hot', 'kind', 'url', 'descriptName', 'travelDays', 'productFeatures', 'date', 'packageID', 'planDay', 'planAbstract', 'planDetails', 'planHotel', 'planCatering', 'attention', 'scheduleMatter', 'scheduleTime1', 'scheduleTime2', 'scheduleFirst', 'scheduleSecond', 'scheduleThird', 'scheduleTip', 'scheduleThird2', 'scheduleForth', 'scheduleFifth', 'state'
+      	fitlerItem: [  'productID', 'hot', 'kind', 'url', 'descriptName', 'travelDays', 'productFeatures', 'date', 'packageID', 'planDay', 'planAbstract', 'planDetails', 'planHotel', 'planCatering', 'attention', 'scheduleMatter', 'scheduleTime1', 'scheduleTime2', 'scheduleFirst', 'scheduleSecond', 'scheduleThird', 'scheduleTip', 'scheduleThird2', 'scheduleForth', 'scheduleFifth', 'state', 'originPrice', 'travelPrice'
         ],
       	dataType: '',
+        dataTypeChange:{
+          name: '标题',
+          price: '价格',
+          origin: '出发地',
+          destination: '旅游地',
+          theme: '主题',
+          days: '旅游天数'
+        },
       	loading: false,
         listLoading: false,
         travelDetail: [],

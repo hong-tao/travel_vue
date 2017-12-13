@@ -22,4 +22,4 @@ export const removeHotel = params => { return axios.post(`${baseUrl}/hotel.php`,
 export const delHotel = params => { return axios.post(`${baseUrl}/hotel.php`, params).then(res => res.data); }
 
 // 订单信息查询
-export const getOrder = params => { return axios.post(`${baseUrl}/order.php`, params).then(res => res.data); };
+export const getOrder = params => { return axios.post(`${baseUrl}/getOrder.php`, params).then(res => res.data); };

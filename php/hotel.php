@@ -65,7 +65,6 @@
         $sql = "update facehotel set $res where id=$id";
         $row = $conn->query($sql);
     }
-
     // 用完数据清掉释放内存
     $conn->close();
 

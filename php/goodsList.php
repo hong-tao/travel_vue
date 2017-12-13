@@ -16,7 +16,7 @@
     }
     else if($type == 'upSearch'){
         if($title != ''){
-            $sql = "select * from details where name like '%$title%' and state='up'";
+            $sql = "select * from details where name or destination or origin or theme like '%$title%' and state='up'";
         }else {
             $sql = "select * from details where state='up'";
         }
@@ -28,7 +28,7 @@
     // 下架搜索或者初始化
     else if($type == 'downSearch'){
         if($title != ''){
-            $sql = "select * from details where name like '%$title%' and state<>'up'";
+            $sql = "select * from details where name or destination or origin or theme like '%$title%' and state<>'up'";
         }else {
             $sql = "select * from details where state<>'up'";
         }

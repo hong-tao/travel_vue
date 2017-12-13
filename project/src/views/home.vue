@@ -77,17 +77,17 @@
 				sysName: '旅游后台管理系统',
 				collapsed: false,
 				sysUserName: '',
-				sysUserAvatar: '../src/assets/user.png',
-				form: {
-					name: '',
-					region: '',
-					date1: '',
-					date2: '',
-					delivery: false,
-					type: [],
-					resource: '',
-					desc: ''
-				}
+				sysUserAvatar: '../src/assets/rikka.gif',
+				// form: {
+				// 	name: '',
+				// 	region: '',
+				// 	date1: '',
+				// 	date2: '',
+				// 	delivery: false,
+				// 	type: [],
+				// 	resource: '',
+				// 	desc: ''
+				// }
 			}
 		},
 		methods: {
@@ -114,7 +114,7 @@
 		},
 		mounted() {
 			var token = sessionStorage.getItem('token');
-			if (token != null) {
+			if (token) {
 				this.sysUserName = token;
 			}else {
 				this.sysUserName = 'user';

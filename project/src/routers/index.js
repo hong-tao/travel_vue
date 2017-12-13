@@ -50,7 +50,7 @@ let routes = [
         iconCls: 'fa fa-id-card-o',
         children: [
             { path: '/customerServices ', component: customerServices, name: '客户服务' },
-            { path: '/feedBack', component: feedBack, name: '客服反馈' },
+            { path: '/feedBack', component: feedBack, name: '客户反馈' },
             { path: '/browsingHistory', component: browsingHistory, name: '浏览记录' }
         ]
     },
